@@ -106,7 +106,7 @@ document.getElementById('carbonForm').addEventListener('submit', function(e) {
     comparacion = "⚠️ Tu huella está <strong>por encima del promedio</strong> en Perú.";
   }
 
-  // 💡 Recomendaciones personalizadas con impacto estimado
+    // 💡 Recomendaciones personalizadas con impacto estimado
   const recomendaciones = [];
 
   // --- TRANSPORTE ---
@@ -267,4 +267,5 @@ document.getElementById('carbonForm').addEventListener('submit', function(e) {
     </div>
   `;
 });
+
 
