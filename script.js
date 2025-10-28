@@ -106,16 +106,117 @@ document.getElementById('carbonForm').addEventListener('submit', function(e) {
     comparacion = "⚠️ Tu huella está <strong>por encima del promedio</strong> en Perú.";
   }
 
-  // 💡 Recomendaciones
-  const tips = [];
-  if (menuCalle + comidaRapida > 10) tips.push("Reducir comidas en la calle reduce emisiones y ahorra dinero.");
-  if (kmAuto + kmMoto > 200) tips.push("Considera usar más transporte público o compartir viajes.");
-  if (!separaResiduos) tips.push("Separar plásticos y orgánicos puede reducir tu huella en un 30%.");
-  if (reciboLuz > 100) tips.push("Revisa el uso de electrodomésticos: apagar en stand-by ahorra luz.");
+  // 💡 Recomendaciones personalizadas con impacto estimado
+  const recomendaciones = [];
 
-  const tipsHTML = tips.length > 0 
-    ? `<h3>💡 Recomendaciones para ti:</h3><ul>${tips.map(t => `<li>${t}</li>`).join('')}</ul>`
-    : "<p>¡Estás haciendo un gran trabajo! 👏</p>";
+  // --- TRANSPORTE ---
+  const kmVehiculo = kmAuto + kmMoto + kmGNV;
+  if (kmVehiculo > 150) {
+    recomendaciones.push({
+      accion: "Usa transporte público 2 veces por semana en lugar de auto/moto",
+      impacto: "Podrías reducir ~45 kg CO₂/mes",
+      icono: "🚌"
+    });
+  }
+  if (kmAuto > 0) {
+    recomendaciones.push({
+      accion: "Comparte viajes con compañeros (carpooling)",
+      impacto: "Reducirías tu huella de transporte hasta en un 50%",
+      icono: "👥"
+    });
+  }
+  if (kmGNV > 0) {
+    recomendaciones.push({
+      accion: "Sigue usando GNV: es mejor que gasolina. ¡Considera bicicleta para trayectos cortos!",
+      impacto: "Mantén tus emisiones bajas (~30% menos que gasolina)",
+      icono: "⛽→🚲"
+    });
+  }
+
+  // --- ALIMENTACIÓN ---
+  const comidasFuera = menuCalle + comidaRapida;
+  if (comidasFuera >= 8) {
+    recomendaciones.push({
+      accion: "Prepara 2 comidas en casa usando ingredientes del mercado (papa, arroz, huevo)",
+      impacto: "Ahorrarías ~15 kg CO₂/semana y S/30–50",
+      icono: "🍲"
+    });
+  }
+  if (menuCalle >= 5 && !dietaVegetariana) {
+    recomendaciones.push({
+      accion: "Prueba un 'menú veggie' 2 veces por semana (lentejas, frejoles, quinua)",
+      impacto: "Reducirías emisiones en ~8 kg CO₂/semana",
+      icono: "🥗"
+    });
+  }
+
+  // --- ELECTRICIDAD ---
+  if (reciboLuz > 80) {
+    recomendaciones.push({
+      accion: "Reemplaza 2 focos incandescentes por LED (cuestan ~S/10 cada uno)",
+      impacto: "Ahorro: ~5–8 kg CO₂/mes + S/15 en tu recibo",
+      icono: "💡"
+    });
+  }
+  if (reciboLuz > 120) {
+    recomendaciones.push({
+      accion: "Desconecta electrodomésticos en stand-by (TV, cargadores, laptop)",
+      impacto: "Podrías ahorrar hasta 10% de tu consumo eléctrico",
+      icono: "🔌"
+    });
+  }
+
+  // --- RESIDUOS ---
+  if (!separaResiduos) {
+    recomendaciones.push({
+      accion: "Separa plásticos y orgánicos (cáscaras, restos de comida)",
+      impacto: "Reducción de ~12 kg CO₂/mes y menos basura en rellenos",
+      icono: "♻️"
+    });
+  }
+  if (kgResiduos > 3) {
+    recomendaciones.push({
+      accion: "Lleva tu vaso/tupper al menú o pollería",
+      impacto: "Evitas 10–15 envases plásticos por semana",
+      icono: "🥡"
+    });
+  }
+
+  // --- DIGITAL ---
+  if (horasPantalla > 6) {
+    recomendaciones.push({
+      accion: "Reduce 1 hora diaria de redes sociales",
+      impacto: "Menos energía en servidores y en tu celular (~6 kg CO₂/mes)",
+      icono: "📵"
+    });
+  }
+
+  // Si no hay recomendaciones fuertes, dar una general positiva
+  if (recomendaciones.length === 0) {
+    recomendaciones.push({
+      accion: "¡Sigue así! Tu estilo de vida ya es bajo en carbono.",
+      impacto: "Eres un ejemplo para otros peruanos 🌱",
+      icono: "👏"
+    });
+  }
+
+  // Limitar a las 3 más relevantes (las primeras)
+  const topRecomendaciones = recomendaciones.slice(0, 3);
+
+  const tipsHTML = `
+    <h3>✅ Recomendaciones para TI</h3>
+    <div class="recomendaciones-lista">
+      ${topRecomendaciones.map(r => `
+        <div class="recomendacion-item">
+          <span class="icono">${r.icono}</span>
+          <div>
+            <p><strong>${r.accion}</strong></p>
+            <p class="impacto">${r.impacto}</p>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
 
   // 💭 Mensaje reflexivo (el corazón de tu solicitud)
   let mensajeReflexivo = "";
@@ -166,3 +267,4 @@ document.getElementById('carbonForm').addEventListener('submit', function(e) {
     </div>
   `;
 });
+
