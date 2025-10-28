@@ -130,4 +130,33 @@ button:hover {
 .impacto-reflexivo li {
   margin-bottom: 10px;
   line-height: 1.5;
+
+}
+
+.recomendaciones-lista {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.recomendacion-item {
+  display: flex;
+  gap: 12px;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-left: 3px solid #4caf50;
+}
+
+.recomendacion-item .icono {
+  font-size: 1.4rem;
+  min-width: 36px;
+  text-align: center;
+}
+
+.recomendacion-item .impacto {
+  color: #555;
+  font-size: 0.9rem;
+  margin: 4px 0 0;
 }
