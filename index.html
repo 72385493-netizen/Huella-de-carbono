@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌱 Huella Ambiental – Perú</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌱 Calculadora Ambiental</h1>
+      <p>Conoce tu impacto en el Perú: carbono y agua</p>
+    </header>
+
+    <!-- 🔘 Selector de pestañas -->
+    <div class="tabs">
+      <button id="tabCarbono" class="tab active" onclick="cambiarPestaña('carbono')">
+        🌍 Huella de Carbono
+      </button>
+      <button id="tabHidrica" class="tab" onclick="cambiarPestaña('hidrica')">
+        💧 Huella Hídrica
+      </button>
+    </div>
+
+    <!-- 📝 Formulario de Carbono -->
+    <form id="carbonForm" class="formulario activo">
+      <!-- (contenido del formulario de carbono aquí) -->
+      <section class="card">
+        <h2>🏠 Vivienda y Electricidad</h2>
+        <label for="reciboLuzC">Monto mensual de tu recibo de luz (S/):</label>
+        <input type="number" id="reciboLuzC" min="0" step="0.01" placeholder="Ej. 60" required>
+        <label for="personasCasaC">¿Cuántas personas viven en tu casa?</label>
+        <input type="number" id="personasCasaC" min="1" max="10" value="1" required>
+      </section>
+
+      <section class="card">
+        <h2>🚍 Transporte (mensual)</h2>
+        <label for="kmAutoC">Km en auto (gasolina):</label>
+        <input type="number" id="kmAutoC" min="0" step="1" value="0">
+        <label for="kmMotoC">Km en moto (gasolina):</label>
+        <input type="number" id="kmMotoC" min="0" step="1" value="0">
+        <label for="kmGNVC">Km en auto/moto con GNV:</label>
+        <input type="number" id="kmGNVC" min="0" step="1" value="0">
+        <label for="kmPublicoC">Km en transporte público:</label>
+        <input type="number" id="kmPublicoC" min="0" step="1" value="0">
+      </section>
+
+      <section class="card">
+        <h2>🍛 Alimentación (semanal)</h2>
+        <label for="menuCalleC">Comidas en la calle:</label>
+        <input type="number" id="menuCalleC" min="0" step="1" placeholder="Ej. 8" required>
+        <label for="comidaRapidaC">Comidas rápidas:</label>
+        <input type="number" id="comidaRapidaC" min="0" step="1" value="0">
+        <label for="comidasCasaC">Comidas en casa:</label>
+        <input type="number" id="comidasCasaC" min="0" step="1" placeholder="Ej. 6" required>
+        <label><input type="checkbox" id="dietaVegetarianaC"> Sigo dieta vegetariana/vegana</label>
+      </section>
+
+      <section class="card">
+        <h2>🗑️ Residuos (semanal)</h2>
+        <label for="kgResiduosC">Kg de basura que generas:</label>
+        <input type="number" id="kgResiduosC" min="0" step="0.1" placeholder="Ej. 3" required>
+        <label><input type="checkbox" id="separaResiduosC"> Separo plásticos u orgánicos</label>
+      </section>
+
+      <section class="card">
+        <h2>📱 Estilo de vida digital</h2>
+        <label for="horasPantallaC">Horas diarias en celular/laptop:</label>
+        <input type="number" id="horasPantallaC" min="0" step="0.5" value="4">
+      </section>
+
+      <button type="submit">🔍 Calcular Huella de Carbono</button>
+    </form>
+
+    <!-- 💧 Formulario de Huella Hídrica -->
+    <form id="waterForm" class="formulario">
+      <!-- (contenido del formulario de huella hídrica aquí) -->
+      <section class="card">
+        <h2>🚿 Higiene personal (diario)</h2>
+        <label for="duchaMinH">Minutos en la ducha:</label>
+        <input type="number" id="duchaMinH" min="0" step="1" value="10" required>
+        <label for="lavadoRopaH">Veces por semana que lavas ropa:</label>
+        <input type="number" id="lavadoRopaH" min="0" step="1" value="2" required>
+      </section>
+
+      <section class="card">
+        <h2>🍛 Alimentación (diaria)</h2>
+        <label for="porcionesCarneH">Porciones de carne:</label>
+        <input type="number" id="porcionesCarneH" min="0" step="1" value="1">
+        <label for="porcionesArrozH">Porciones de arroz o fideos:</label>
+        <input type="number" id="porcionesArrozH" min="0" step="1" value="2">
+        <label for="porcionesPapaH">Porciones de papa, camote o yuca:</label>
+        <input type="number" id="porcionesPapaH" min="0" step="1" value="2">
+        <label for="porcionesQuinuaH">Porciones de quinua, kiwicha o cañihua:</label>
+        <input type="number" id="porcionesQuinuaH" min="0" step="1" value="0">
+        <label for="comidasCalleH">Comidas en la calle (menú, pollería, etc.):</label>
+        <input type="number" id="comidasCalleH" min="0" step="1" value="1">
+        <small>Incluye empaque, limpieza y producción</small>
+      </section>
+
+      <section class="card">
+        <h2>🛍️ Consumo semanal</h2>
+        <label for="botellasPlasticoH">Botellas de plástico:</label>
+        <input type="number" id="botellasPlasticoH" min="0" step="1" value="3">
+        <label for="hojasPapelH">Hojas de papel impresas:</label>
+        <input type="number" id="hojasPapelH" min="0" step="1" value="5">
+        <label for="prendasRopaH">Prendas de ropa nuevas al mes:</label>
+        <input type="number" id="prendasRopaH" min="0" step="1" value="1">
+      </section>
+
+      <section class="card">
+        <h2>🔌 Electricidad</h2>
+        <label for="reciboLuzH">Monto mensual de tu recibo de luz (S/):</label>
+        <input type="number" id="reciboLuzH" min="0" step="0.01" placeholder="Ej. 60" required>
+        <small>En Perú, la generación de electricidad consume poca agua</small>
+      </section>
+
+      <button type="submit">💧 Calcular Huella Hídrica</button>
+    </form>
+
+    <!-- 📊 Resultado (compartido) -->
+    <div id="resultado"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
