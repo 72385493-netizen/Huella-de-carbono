@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌱 Calculadoras Ambientales – Perú</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌱 Calculadoras Ambientales</h1>
+      <p>Conoce tu impacto y tus prácticas circulares en el Perú</p>
+    </header>
+
+    <!-- 🔘 Pestañas -->
+    <div class="tabs">
+      <button id="tabCarbono" class="tab active" onclick="cambiarPestaña('carbono')">🌍 Carbono</button>
+      <button id="tabHidrica" class="tab" onclick="cambiarPestaña('hidrica')">💧 Agua</button>
+      <button id="tabCircular" class="tab" onclick="cambiarPestaña('circular')">♻️ Circular</button>
+    </div>
+
+    <!-- 🌍 HUELLA DE CARBONO -->
+    <form id="carbonForm" class="formulario activo">
+      <!-- (contenido de carbono, con campos DNI/sexo/carrera) -->
+      <section class="card">
+        <h2>🏠 Vivienda y Electricidad</h2>
+        <label for="reciboLuzC">Monto mensual de tu recibo de luz (S/):</label>
+        <input type="number" id="reciboLuzC" min="0" step="0.01" placeholder="Ej. 60" required>
+        <label for="personasCasaC">¿Cuántas personas viven en tu casa?</label>
+        <input type="number" id="personasCasaC" min="1" max="10" value="1" required>
+      </section>
+
+      <section class="card">
+        <h2>🚍 Transporte (mensual)</h2>
+        <label for="kmAutoC">Km en auto (gasolina):</label>
+        <input type="number" id="kmAutoC" min="0" step="1" value="0">
+        <label for="kmMotoC">Km en moto (gasolina):</label>
+        <input type="number" id="kmMotoC" min="0" step="1" value="0">
+        <label for="kmGNVC">Km en auto/moto con GNV:</label>
+        <input type="number" id="kmGNVC" min="0" step="1" value="0">
+        <label for="kmPublicoC">Km en transporte público:</label>
+        <input type="number" id="kmPublicoC" min="0" step="1" value="0">
+      </section>
+
+      <section class="card">
+        <h2>🍛 Alimentación (semanal)</h2>
+        <label for="menuCalleC">Comidas en la calle:</label>
+        <input type="number" id="menuCalleC" min="0" step="1" placeholder="Ej. 8" required>
+        <label for="comidaRapidaC">Comidas rápidas:</label>
+        <input type="number" id="comidaRapidaC" min="0" step="1" value="0">
+        <label for="comidasCasaC">Comidas en casa:</label>
+        <input type="number" id="comidasCasaC" min="0" step="1" placeholder="Ej. 6" required>
+        <label><input type="checkbox" id="dietaVegetarianaC"> Sigo dieta vegetariana/vegana</label>
+      </section>
+
+      <section class="card">
+        <h2>🗑️ Residuos (semanal)</h2>
+        <label for="kgResiduosC">Kg de basura que generas:</label>
+        <input type="number" id="kgResiduosC" min="0" step="0.1" placeholder="Ej. 3" required>
+        <label><input type="checkbox" id="separaResiduosC"> Separo plásticos u orgánicos</label>
+      </section>
+
+      <section class="card">
+        <h2>📱 Estilo de vida digital</h2>
+        <label for="horasPantallaC">Horas diarias en celular/laptop:</label>
+        <input type="number" id="horasPantallaC" min="0" step="0.5" value="4">
+      </section>
+
+      <section class="card">
+        <h2>📊 Datos para análisis institucional (requerido)</h2>
+        <label for="dniC">DNI:</label>
+        <input type="text" id="dniC" minlength="8" maxlength="8" pattern="[0-9]{8}" placeholder="Ej. 72385493" required>
+        <label for="sexoC">Sexo:</label>
+        <select id="sexoC" required>
+          <option value="">-- Selecciona --</option>
+          <option value="femenino">Femenino</option>
+          <option value="masculino">Masculino</option>
+          <option value="otro">Otro / Prefiero no decir</option>
+        </select>
+        <label for="carreraC">Carrera o rubro de trabajo:</label>
+        <input type="text" id="carreraC" placeholder="Ej. Ingeniería Ambiental" required>
+        <small>Estos datos se usan con autorización para investigación ambiental en Perú.</small>
+      </section>
+
+      <button type="submit">🔍 Calcular Huella de Carbono</button>
+    </form>
+
+    <!-- 💧 HUELLA HÍDRICA -->
+    <form id="waterForm" class="formulario">
+      <!-- (contenido de hídrica, con campos DNI/sexo/carrera) -->
+      <section class="card">
+        <h2>🚿 Higiene personal (diario)</h2>
+        <label for="duchaMinH">Minutos en la ducha:</label>
+        <input type="number" id="duchaMinH" min="0" step="1" value="10" required>
+        <label for="lavadoRopaH">Veces por semana que lavas ropa:</label>
+        <input type="number" id="lavadoRopaH" min="0" step="1" value="2" required>
+      </section>
+
+      <section class="card">
+        <h2>🍛 Alimentación (diaria)</h2>
+        <label for="porcionesCarneH">Porciones de carne:</label>
+        <input type="number" id="porcionesCarneH" min="0" step="1" value="1">
+        <label for="porcionesArrozH">Porciones de arroz o fideos:</label>
+        <input type="number" id="porcionesArrozH" min="0" step="1" value="2">
+        <label for="porcionesPapaH">Porciones de papa, camote o yuca:</label>
+        <input type="number" id="porcionesPapaH" min="0" step="1" value="2">
+        <label for="porcionesQuinuaH">Porciones de quinua, kiwicha o cañihua:</label>
+        <input type="number" id="porcionesQuinuaH" min="0" step="1" value="0">
+        <label for="comidasCalleH">Comidas en la calle (menú, pollería, etc.):</label>
+        <input type="number" id="comidasCalleH" min="0" step="1" value="1">
+        <small>Incluye empaque, limpieza y producción</small>
+      </section>
+
+      <section class="card">
+        <h2>🛍️ Consumo semanal</h2>
+        <label for="botellasPlasticoH">Botellas de plástico:</label>
+        <input type="number" id="botellasPlasticoH" min="0" step="1" value="3">
+        <label for="hojasPapelH">Hojas de papel impresas:</label>
+        <input type="number" id="hojasPapelH" min="0" step="1" value="5">
+        <label for="prendasRopaH">Prendas de ropa nuevas al mes:</label>
+        <input type="number" id="prendasRopaH" min="0" step="1" value="1">
+      </section>
+
+      <section class="card">
+        <h2>🔌 Electricidad</h2>
+        <label for="reciboLuzH">Monto mensual de tu recibo de luz (S/):</label>
+        <input type="number" id="reciboLuzH" min="0" step="0.01" placeholder="Ej. 60" required>
+        <small>En Perú, la generación de electricidad consume poca agua</small>
+      </section>
+
+      <section class="card">
+        <h2>📊 Datos para análisis institucional (requerido)</h2>
+        <label for="dniH">DNI:</label>
+        <input type="text" id="dniH" minlength="8" maxlength="8" pattern="[0-9]{8}" placeholder="Ej. 72385493" required>
+        <label for="sexoH">Sexo:</label>
+        <select id="sexoH" required>
+          <option value="">-- Selecciona --</option>
+          <option value="femenino">Femenino</option>
+          <option value="masculino">Masculino</option>
+          <option value="otro">Otro / Prefiero no decir</option>
+        </select>
+        <label for="carreraH">Carrera o rubro de trabajo:</label>
+        <input type="text" id="carreraH" placeholder="Ej. Medicina" required>
+        <small>Estos datos se usan con autorización para investigación ambiental en Perú.</small>
+      </section>
+
+      <button type="submit">💧 Calcular Huella Hídrica</button>
+    </form>
+
+    <!-- ♻️ ECONOMÍA CIRCULAR -->
+    <form id="circularForm" class="formulario">
+      <!-- (contenido de circular, con perfil) -->
+      <section class="card">
+        <h2>1. Rechazar y Repensar</h2>
+        <label>
+          <input type="radio" name="rechazar" value="3" required> Siempre
+          <input type="radio" name="rechazar" value="2"> A veces
+          <input type="radio" name="rechazar" value="0"> Nunca
+        </label>
+        <small>¿Rechazas bolsas plásticas, sorbetes o empaques innecesarios?</small>
+
+        <label>
+          <input type="radio" name="repensar" value="3" required> Siempre
+          <input type="radio" name="repensar" value="2"> A veces
+          <input type="radio" name="repensar" value="0"> Nunca
+        </label>
+        <small>¿Te preguntas "¿realmente necesito esto?" antes de comprar?</small>
+      </section>
+
+      <section class="card">
+        <h2>2. Reducir</h2>
+        <label>
+          <input type="radio" name="reduceCompras" value="3" required> Siempre
+          <input type="radio" name="reduceCompras" value="2"> A veces
+          <input type="radio" name="reduceCompras" value="0"> Nunca
+        </label>
+        <small>¿Compras solo lo necesario?</small>
+
+        <label>
+          <input type="radio" name="reduceEnergia" value="3" required> Siempre
+          <input type="radio" name="reduceEnergia" value="2"> A veces
+          <input type="radio" name="reduceEnergia" value="0"> Nunca
+        </label>
+        <small>¿Reduces el uso de luz, agua y dispositivos?</small>
+      </section>
+
+      <section class="card">
+        <h2>3. Reutilizar y Reutilizar con nuevo fin</h2>
+        <label>
+          <input type="radio" name="reutiliza" value="3" required> Siempre
+          <input type="radio" name="reutiliza" value="2"> A veces
+          <input type="radio" name="reutiliza" value="0"> Nunca
+        </label>
+        <small>¿Usas tupper, botellas reutilizables, bolsas de tela?</small>
+
+        <label>
+          <input type="radio" name="reutilizaNuevo" value="3" required> Siempre
+          <input type="radio" name="reutilizaNuevo" value="2"> A veces
+          <input type="radio" name="reutilizaNuevo" value="0"> Nunca
+        </label>
+        <small>¿Das nuevo uso a objetos? (Ej: tarro → maceta)</small>
+      </section>
+
+      <section class="card">
+        <h2>4. Reparar y Restaurar</h2>
+        <label>
+          <input type="radio" name="reparar" value="3" required> Siempre
+          <input type="radio" name="reparar" value="2"> A veces
+          <input type="radio" name="reparar" value="0"> Nunca
+        </label>
+        <small>¿Reparas zapatos, ropa o electrodomésticos?</small>
+
+        <label>
+          <input type="radio" name="restaurar" value="3" required> Siempre
+          <input type="radio" name="restaurar" value="2"> A veces
+          <input type="radio" name="restaurar" value="0"> Nunca
+        </label>
+        <small>¿Restauras muebles o ropa antes de desecharlos?</small>
+      </section>
+
+      <section class="card">
+        <h2>5. Reciclar y Recuperar</h2>
+        <label>
+          <input type="radio" name="reciclar" value="3" required> Siempre
+          <input type="radio" name="reciclar" value="2"> A veces
+          <input type="radio" name="reciclar" value="0"> Nunca
+        </label>
+        <small>¿Separas plástico, papel o vidrio para reciclaje?</small>
+
+        <label>
+          <input type="radio" name="compostar" value="3" required> Siempre
+          <input type="radio" name="compostar" value="2"> A veces
+          <input type="radio" name="compostar" value="0"> Nunca
+        </label>
+        <small>¿Compostas restos de comida o cáscaras?</small>
+      </section>
+
+      <section class="card">
+        <h2>👤 ¿Cuál es tu principal rol?</h2>
+        <label>
+          <input type="radio" name="perfilCircular" value="estudiante" required> Estudiante
+          <input type="radio" name="perfilCircular" value="trabajador"> Trabajador/a
+          <input type="radio" name="perfilCircular" value="amaCasa"> Ama/o de casa
+          <input type="radio" name="perfilCircular" value="emprendedor"> Emprendedor/a
+          <input type="radio" name="perfilCircular" value="rural"> Vive en zona rural
+        </label>
+        <small>Tu perfil nos ayuda a darte mejores recomendaciones.</small>
+      </section>
+
+      <button type="submit">♻️ Calcular mi Índice de Circularidad</button>
+    </form>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
