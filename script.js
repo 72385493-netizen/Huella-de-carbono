@@ -107,7 +107,7 @@ document.getElementById('carbonForm').addEventListener('submit', function(e) {
   }
 
   const recomendacionesHTMLC = `
-    <h3>💡 Recomendaciones personalizadas</h3>
+    <h3>Recomendaciones</h3>
     <ul>${recCarbono.map(r => `<li>${r}</li>`).join('')}</ul>
   `;
 
@@ -147,7 +147,7 @@ document.getElementById('carbonForm').addEventListener('submit', function(e) {
       <p><strong>Mensual:</strong> ${totalMensual.toFixed(1)} kg CO₂</p>
       <p><strong>Anual:</strong> ${totalAnual.toFixed(1)} kg CO₂</p>
       <p>${comparacionC}</p>
-      <p><small>🌍 Promedio global: ~4,000 kg CO₂/año | Perú: ~2,000–2,500 kg CO₂/año</small></p>
+      <p><small> Promedio global: ~4,000 kg CO₂/año | Perú: ~2,000–2,500 kg CO₂/año</small></p>
       ${recomendacionesHTMLC}
       ${mensajeReflexivoC}
     </div>
@@ -244,7 +244,7 @@ document.getElementById('waterForm').addEventListener('submit', function(e) {
   }
 
   const recomendacionesHTMLH = `
-    <h3>💧 Recomendaciones personalizadas</h3>
+    <h3>Recomendaciones</h3>
     <ul>${recHidrica.map(r => `<li>${r}</li>`).join('')}</ul>
   `;
 
@@ -281,7 +281,7 @@ document.getElementById('waterForm').addEventListener('submit', function(e) {
       <p><strong>Diaria:</strong> ${Math.round(totalDiario)} litros</p>
       <p><strong>Anual:</strong> ${Math.round(totalAnual).toLocaleString()} litros</p>
       <p>${comparacionH}</p>
-      <p><small>🌍 Promedio global: ~3,800 L/día | Perú: ~2,000–2,800 L/día</small></p>
+      <p><small>Promedio global: ~3,800 L/día | Perú: ~2,000–2,800 L/día</small></p>
       ${recomendacionesHTMLH}
       ${mensajeReflexivoH}
     </div>
@@ -379,7 +379,7 @@ document.getElementById('circularForm').addEventListener('submit', function(e) {
   // Nivel general
   let nivel, color, mensajeGeneral;
   if (indice >= 80) {
-    nivel = "Líder Circular 🌟";
+    nivel = "Líder 🌟";
     color = "#1b5e20";
     mensajeGeneral = "Eres un referente en economía circular. Inspira a otros.";
   } else if (indice >= 60) {
@@ -429,7 +429,8 @@ document.getElementById('circularForm').addEventListener('submit', function(e) {
 
       ${recomendacionesHTML}
 
-      <p><small>♻️ Basado en las 10R de la economía circular. En Perú, cada acción cuenta: desde el mercado local hasta el compostaje en el balcón.</small></p>
+      <p><small>♻️ En Perú, cada acción cuenta: desde el mercado local hasta el compostaje en el balcón.</small></p>
     </div>
   `;
+
 });
